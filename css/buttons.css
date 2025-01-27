@@ -1,0 +1,14 @@
+.vote-container {
+  display: flex;
+  
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.vote-button {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}

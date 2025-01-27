@@ -1,15 +1,18 @@
 import Link from "next/link";
 import dbConnect from "../lib/dbConnect";
+import Vote, { Votes } from "../models/Vote";
 import Pet, { Pets } from "../models/Pet";
 import { GetServerSideProps } from "next";
 
 type Props = {
   pets: Pets[];
+  votes: Votes[];
 };
 
-const Index = ({ pets }: Props) => {
+const Index = ({ pets, votes }: Props) => {
   return (
     <>
+      {votes.map((vote) => (<p>{vote.name}</p>))}
       {pets.map((pet) => (
         <div key={pet._id}>
           <div className="card">
@@ -59,14 +62,23 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 
   /* find all the data in our database */
   const result = await Pet.find({});
+  const vres = await Vote.find({});
 
   /* Ensures all objectIds and nested objectIds are serialized as JSON data */
   const pets = result.map((doc) => {
     const pet = JSON.parse(JSON.stringify(doc));
     return pet;
   });
+  const votes = vres.map((doc) => {
+    const vote = JSON.parse(JSON.stringify(doc));
+    console.log(vote);
+    return vote;
+  });
 
-  return { props: { pets: pets } };
+  return { props: { 
+    pets: pets,
+    votes: votes,
+   } };
 };
 
 export default Index;

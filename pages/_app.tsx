@@ -14,13 +14,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div className="top-bar">
         <div className="nav">
           <Link href="/">Home</Link>
-          <Link href="/new">Add Pet</Link>
+          <Link href="/vote">Vote</Link>
         </div>
 
         <img
           id="title"
-          src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Pet_logo_with_flowers.png"
-          alt="pet care logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/3/33/Clue_game_logo.png?20230925212314"
+          alt="Clue logo"
         ></img>
       </div>
       <div className="wrapper grid">
