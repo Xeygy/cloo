@@ -1,0 +1,13 @@
+.votecontainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Optional: Adds space between the buttons */
+    margin-top: 20px;
+  }
+.votebutton {
+  background-color: var(--accent);
+  color: black;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}

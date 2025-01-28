@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-
+import style from "./button.module.css";
 
 interface VoteData {
     name: string;
@@ -44,11 +44,11 @@ const VotePage = () => {
         <>
             <div>
             <h1>Vote Page</h1>
-            <div className="vote-container">
-                <button className="vote-button" onClick={() => onClick("Alice")}>Alice</button>
-                <button onClick={() => onClick("Ben")}>Ben</button>
-                <button onClick={() => onClick("Charlie")}>Charlie</button>
-                <button onClick={() => onClick("Monopoly Man")}>The Monopoly Man</button>
+            <div className={style.votecontainer}>
+                <button className={style.votebutton} onClick={() => onClick("Alice")}>Alice</button>
+                <button className={style.votebutton} onClick={() => onClick("Ben")}>Ben</button>
+                <button className={style.votebutton} onClick={() => onClick("Charlie")}>Charlie</button>
+                <button className={style.votebutton} onClick={() => onClick("Monopoly Man")}>The Monopoly Man</button>
             </div>
             </div>
             

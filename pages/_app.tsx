@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Pet Care App</title>
+        <title>Cloo</title>
       </Head>
 
       <div className="top-bar">

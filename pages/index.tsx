@@ -1,58 +1,22 @@
 import Link from "next/link";
 import dbConnect from "../lib/dbConnect";
 import Vote, { Votes } from "../models/Vote";
-import Pet, { Pets } from "../models/Pet";
 import { GetServerSideProps } from "next";
+import style from "./home.module.css";
 
 type Props = {
-  pets: Pets[];
   votes: Votes[];
+  name_cts: any[];
 };
 
-const Index = ({ pets, votes }: Props) => {
+const Index = ({ votes, name_cts }: Props) => {
   return (
-    <>
-      {votes.map((vote) => (<p>{vote.name}</p>))}
-      {pets.map((pet) => (
-        <div key={pet._id}>
-          <div className="card">
-            <img src={pet.image_url} />
-            <h5 className="pet-name">{pet.name}</h5>
-            <div className="main-content">
-              <p className="pet-name">{pet.name}</p>
-              <p className="owner">Owner: {pet.owner_name}</p>
-
-              {/* Extra Pet Info: Likes and Dislikes */}
-              <div className="likes info">
-                <p className="label">Likes</p>
-                <ul>
-                  {pet.likes.map((data, index) => (
-                    <li key={index}>{data} </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="dislikes info">
-                <p className="label">Dislikes</p>
-                <ul>
-                  {pet.dislikes.map((data, index) => (
-                    <li key={index}>{data} </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="btn-container">
-                <Link href={{ pathname: "/[id]/edit", query: { id: pet._id } }}>
-                  <button className="btn edit">Edit</button>
-                </Link>
-                <Link href={{ pathname: "/[id]", query: { id: pet._id } }}>
-                  <button className="btn view">View</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </>
+    <div className={style.homepage}>
+    <h1>Current Votes!</h1>
+    <ul>
+      {name_cts.map((name_ct) => (<li>{name_ct[0]}: {name_ct[1]}</li>))}
+    </ul>
+    </div>
   );
 };
 
@@ -61,23 +25,22 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
   await dbConnect();
 
   /* find all the data in our database */
-  const result = await Pet.find({});
-  const vres = await Vote.find({});
-
-  /* Ensures all objectIds and nested objectIds are serialized as JSON data */
-  const pets = result.map((doc) => {
-    const pet = JSON.parse(JSON.stringify(doc));
-    return pet;
-  });
-  const votes = vres.map((doc) => {
+  const res = await Vote.find({});
+  const votes = res.map((doc) => {
     const vote = JSON.parse(JSON.stringify(doc));
-    console.log(vote);
     return vote;
   });
 
+  const names = await Vote.find().distinct('name');
+  const name_cts = await Promise.all(names.map(async (name) => {
+    const count = await Vote.countDocuments({ name: name });
+    return [name, count];
+  }))
+  const json_name_cts = JSON.parse(JSON.stringify(name_cts));
+
   return { props: { 
-    pets: pets,
     votes: votes,
+    name_cts: json_name_cts,
    } };
 };
 
