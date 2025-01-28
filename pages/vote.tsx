@@ -34,7 +34,7 @@ const VotePage = () => {
         }
     };
 
-    const onClick = (name) => {
+    const onClick = (name: string) => {
         postData({
             name: name
         });
