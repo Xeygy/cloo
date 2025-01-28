@@ -34,13 +34,11 @@ const Index = ({ votes, name_cts }: Props) => {
   return (
     <div className={homeStyle.homepage}>
     <h1>Vote Tally</h1>
-    <ul>
-      {
-        (name_cts.length == 0) 
-        ? <li>No votes have been cast yet.</li> 
-        : name_cts.map((name_ct) => (<li>{name_ct[0]}: {name_ct[1]}</li>))
-      }
-    </ul>
+    {
+      (name_cts.length == 0) 
+      ? <p>No votes have been cast yet.</p> 
+      : <ul>{name_cts.map((name_ct) => (<li>{name_ct[0]}: {name_ct[1]}</li>))}</ul>
+    }
     <button className={buttonStyle.votebutton}
           onClick={onClick}>Clear Votes</button>
     </div>

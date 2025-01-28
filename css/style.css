@@ -46,6 +46,10 @@
   color: var(--highlight);
 }
 
+h1 {
+  margin: 0;
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -110,15 +114,6 @@
 .pet-name {
   font-weight: bold;
   font-size: 130%;
-}
-
-h5.pet-name {
-  color: white;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 10px;
-  text-shadow: 0px 0px 4px black;
 }
 
 .info ul {

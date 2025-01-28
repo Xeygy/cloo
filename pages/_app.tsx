@@ -16,14 +16,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <div className="top-bar" >
-        <Image
-          src="/cloo_logo.png"
-          width="0"
-          height="0"
-          sizes="100vw"
-          style={{ width: 'max(10%, 5rem)', height: 'auto' }}
-          alt="Clue Logo"
-        />
+        <Link style={{textAlign: "left"}} href="/">
+          <Image
+            src="/cloo_logo.png"
+            width="0"
+            height="0"
+            sizes="100vw"
+            style={{ width: 'max(10%, 5rem)', height: 'auto' }}
+            alt="Clue Logo"
+          />
+        </Link>
         <div className="nav">
           <Link href="/">Home</Link>
           <Link href="/vote">Vote</Link>
