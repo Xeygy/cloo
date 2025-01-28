@@ -4,21 +4,24 @@ import Head from "next/head";
 import Link from "next/link";
 import type { AppProps } from "next/app";
 import Image from "next/image";
+import { Jost } from 'next/font/google';
+
+const jost = Jost({ subsets: ['latin'], display: "swap" })
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <div className={jost.className}>
       <Head>
         <title>Cloo</title>
       </Head>
 
-      <div className="top-bar">
+      <div className="top-bar" >
         <Image
           src="/cloo_logo.png"
           width="0"
           height="0"
           sizes="100vw"
-          style={{ width: 'max(10%, 3rem)', height: 'auto' }}
+          style={{ width: 'max(10%, 5rem)', height: 'auto' }}
           alt="Clue Logo"
         />
         <div className="nav">
@@ -29,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div className="wrapper grid">
         <Component {...pageProps} />
       </div>
-    </>
+    </div>
   );
 }
 

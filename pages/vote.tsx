@@ -39,6 +39,7 @@ const VotePage = () => {
 
     const onClick = (name: string) => {
         if (!voted) {
+            setMessage("Submitting your vote...");
             postData({
                 name: name
             });
@@ -54,9 +55,8 @@ const VotePage = () => {
             <div className={style.votecontainer}>
                 {names.map((name) => <button className={style.votebutton} onClick={() => onClick(name)}>{name}</button>)}
             </div>
-            </div>
-            
             <p>{message}</p>
+            </div>
         </>
 
     )
