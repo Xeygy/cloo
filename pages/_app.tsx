@@ -3,6 +3,7 @@ import "../css/form.css";
 import Head from "next/head";
 import Link from "next/link";
 import type { AppProps } from "next/app";
+import Image from "next/image";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -12,16 +13,18 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <div className="top-bar">
+        <Image
+          src="/cloo_logo.png"
+          width="0"
+          height="0"
+          sizes="100vw"
+          style={{ width: 'max(10%, 3rem)', height: 'auto' }}
+          alt="Clue Logo"
+        />
         <div className="nav">
           <Link href="/">Home</Link>
           <Link href="/vote">Vote</Link>
         </div>
-
-        <img
-          id="title"
-          src="https://upload.wikimedia.org/wikipedia/commons/3/33/Clue_game_logo.png?20230925212314"
-          alt="Clue logo"
-        ></img>
       </div>
       <div className="wrapper grid">
         <Component {...pageProps} />

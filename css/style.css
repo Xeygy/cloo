@@ -15,6 +15,10 @@
   position: relative;
   height: 80px;
   text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
 #title {
   position: absolute;
