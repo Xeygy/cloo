@@ -4,10 +4,17 @@
     gap: 10px; /* Optional: Adds space between the buttons */
     margin-top: 20px;
   }
+
 .votebutton {
-  background-color: var(--accent);
+  background-color: var(--button);
   color: black;
+  font-size: 1rem;
+  border-style: solid;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
+}
+
+.votebutton:hover {
+  background-color: var(--button-hover);
 }

@@ -2,7 +2,9 @@ import Link from "next/link";
 import dbConnect from "../lib/dbConnect";
 import Vote, { Votes } from "../models/Vote";
 import { GetServerSideProps } from "next";
-import style from "./home.module.css";
+import homeStyle from "./home.module.css";
+import buttonStyle from "./button.module.css"
+import { useRouter } from 'next/router';
 
 type Props = {
   votes: Votes[];
@@ -10,12 +12,33 @@ type Props = {
 };
 
 const Index = ({ votes, name_cts }: Props) => {
+  const router = useRouter();
+
+  const onClick = async () => {
+    try {
+      const response = await fetch('/api/votes', {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        // Optionally, you can refresh the page or update the state to reflect the changes
+        router.reload();
+      } else {
+        alert('Failed to delete votes');
+      }
+    } catch (error) {
+      console.error('Error deleting votes:', error);
+      alert('An error occurred');
+    }
+  };
+
   return (
-    <div className={style.homepage}>
-    <h1>Current Votes!</h1>
+    <div className={homeStyle.homepage}>
+    <h1>Vote Tally</h1>
     <ul>
       {name_cts.map((name_ct) => (<li>{name_ct[0]}: {name_ct[1]}</li>))}
     </ul>
+    <button className={buttonStyle.votebutton}
+          onClick={onClick}>Clear Votes</button>
     </div>
   );
 };

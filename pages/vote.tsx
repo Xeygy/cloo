@@ -40,15 +40,14 @@ const VotePage = () => {
         });
     }
 
+    const names = ["Sisyphus", "Col. Mustard", "Mr. Green", "Gerald, The Monopoly Man"];
+
     return (
         <>
             <div>
-            <h1>Vote Page</h1>
+            <h1>Vote Now!</h1>
             <div className={style.votecontainer}>
-                <button className={style.votebutton} onClick={() => onClick("Alice")}>Alice</button>
-                <button className={style.votebutton} onClick={() => onClick("Ben")}>Ben</button>
-                <button className={style.votebutton} onClick={() => onClick("Charlie")}>Charlie</button>
-                <button className={style.votebutton} onClick={() => onClick("Monopoly Man")}>The Monopoly Man</button>
+                {names.map((name) => <button className={style.votebutton} onClick={() => onClick(name)}>{name}</button>)}
             </div>
             </div>
             

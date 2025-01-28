@@ -29,6 +29,13 @@ export default async function handler(
         res.status(400).json({ success: false });
       }
       break;
+      case "DELETE":
+        try {
+          await Vote.deleteMany({}); /* delete all votes from the database */
+          res.status(200).json({ success: true, message: "All votes deleted" });
+        } catch (error) {
+          res.status(400).json({ success: false });
+        }
     default:
       res.status(400).json({ success: false });
       break;
